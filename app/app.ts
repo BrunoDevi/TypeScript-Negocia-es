@@ -6,3 +6,8 @@ form.addEventListener('submit', event => {
     event.preventDefault();
     control.Adiciona();
 }) 
+
+const reset = document.getElementById('reset-btn');
+reset.addEventListener("click", ()=>{
+    control.LimparLista();
+});

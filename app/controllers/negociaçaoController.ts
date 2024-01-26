@@ -10,6 +10,7 @@ export class NegociaçaoController {
     private negociaçoes = new Negociaçoes();
     private NegociaçaoViwer = new NegociaçoesView('#negociaçoes-view');
     private MensagemViwer = new MensagemView('#mensagemView');
+    private readonly diasUteis: number[] = [1, 2, 3, 4, 5];
 
     constructor() {
         this.inputData = document.querySelector('#data');
@@ -18,22 +19,25 @@ export class NegociaçaoController {
         this.NegociaçaoViwer.update(this.negociaçoes);
     }
 
-    Adiciona(): void{
+    public Adiciona(): void{
         const negociaçao = this.CriarNegociaçao();
-        this.negociaçoes.Adicionar(negociaçao);
-        this.NegociaçaoViwer.update(this.negociaçoes);
-        this.MensagemViwer.update("Negociação Registrada com Sucesso!!");
-        this.LimparFormulario();
-        setInterval(()=>{
-            this.MensagemViwer.MsgOff();
-        },  2000)
+        const diaDaSemana = negociaçao.data.getDay();
+
+        if(this.diasUteis.includes(diaDaSemana)){
+            this.negociaçoes.Adicionar(negociaçao);
+            this.LimparFormulario();
+            this.AtualizaView();
+        } else {
+            this.MensagemViwer.update('Só é possivel realizar Negociações em dias uteis.');
+        }
+        setInterval(() => {this.MensagemViwer.AlertOff();},  8000);
     }
 
-    Remover(index:number): void{
-        this.negociaçoes.Remover(index);
+    public LimparLista(): void{
+        this.NegociaçaoViwer.reset();
     }
 
-    CriarNegociaçao(): Negociaçao{
+    private CriarNegociaçao(): Negociaçao{
         const exp = /-/g
         const date = new Date(this.inputData.value.replace(exp, ","));
         const quantidade = parseInt(this.inputQuantidade.value);
@@ -41,10 +45,15 @@ export class NegociaçaoController {
         return new Negociaçao (date, quantidade, valor)
     }
 
-    LimparFormulario(): void{
+    private LimparFormulario(): void{
         this.inputData.value = '';
         this.inputQuantidade.value = '';
         this.inputValor.value = '';
         this.inputData.focus();
     }
+
+    private AtualizaView(): void {
+        this.NegociaçaoViwer.update(this.negociaçoes);
+        this.MensagemViwer.update("Negociação Registrada com Sucesso!!");
+    } 
 }

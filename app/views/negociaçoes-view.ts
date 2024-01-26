@@ -3,7 +3,7 @@ import { View } from "./view.js";
 
 export class NegociaçoesView extends View<Negociaçoes>{
 
-    template(model:Negociaçoes):string{
+    protected template(model:Negociaçoes):string{
         return `
             <table class="table table-hover table-bordered">
                 <thead>
@@ -26,4 +26,21 @@ export class NegociaçoesView extends View<Negociaçoes>{
             </table>
         `;
     }
+
+    public reset(): void{
+        this.element.innerHTML = `
+        <table class="table table-hover table-bordered">
+            <thead>
+                <tr>
+                    <th>DATA</th>
+                    <th>QUANTIDADE</th>
+                    <th>VALOR</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    `;
+    } 
 }

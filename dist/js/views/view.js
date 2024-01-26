@@ -6,7 +6,7 @@ export class View {
         const template = this.template(model);
         this.element.innerHTML = template;
     }
-    MsgOff() {
+    AlertOff() {
         this.element.innerHTML = '';
     }
 }

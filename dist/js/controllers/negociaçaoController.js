@@ -7,6 +7,7 @@ export class NegociaçaoController {
         this.negociaçoes = new Negociaçoes();
         this.NegociaçaoViwer = new NegociaçoesView('#negociaçoes-view');
         this.MensagemViwer = new MensagemView('#mensagemView');
+        this.diasUteis = [1, 2, 3, 4, 5];
         this.inputData = document.querySelector('#data');
         this.inputQuantidade = document.querySelector('#quantidade');
         this.inputValor = document.querySelector('#valor');
@@ -14,16 +15,19 @@ export class NegociaçaoController {
     }
     Adiciona() {
         const negociaçao = this.CriarNegociaçao();
-        this.negociaçoes.Adicionar(negociaçao);
-        this.NegociaçaoViwer.update(this.negociaçoes);
-        this.MensagemViwer.update("Negociação Registrada com Sucesso!!");
-        this.LimparFormulario();
-        setInterval(() => {
-            this.MensagemViwer.MsgOff();
-        }, 2000);
+        const diaDaSemana = negociaçao.data.getDay();
+        if (this.diasUteis.includes(diaDaSemana)) {
+            this.negociaçoes.Adicionar(negociaçao);
+            this.LimparFormulario();
+            this.AtualizaView();
+        }
+        else {
+            this.MensagemViwer.update('Só é possivel realizar Negociações em dias uteis.');
+        }
+        setInterval(() => { this.MensagemViwer.AlertOff(); }, 8000);
     }
-    Remover(index) {
-        this.negociaçoes.Remover(index);
+    LimparLista() {
+        this.NegociaçaoViwer.reset();
     }
     CriarNegociaçao() {
         const exp = /-/g;
@@ -37,5 +41,9 @@ export class NegociaçaoController {
         this.inputQuantidade.value = '';
         this.inputValor.value = '';
         this.inputData.focus();
+    }
+    AtualizaView() {
+        this.NegociaçaoViwer.update(this.negociaçoes);
+        this.MensagemViwer.update("Negociação Registrada com Sucesso!!");
     }
 }
