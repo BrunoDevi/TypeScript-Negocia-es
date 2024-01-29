@@ -8,7 +8,7 @@ export class NegociaçaoController {
     private inputQuantidade: HTMLInputElement;
     private inputValor: HTMLInputElement;
     private negociaçoes = new Negociaçoes();
-    private NegociaçaoViwer = new NegociaçoesView('#negociaçoes-view');
+    private NegociaçaoViwer = new NegociaçoesView('#negociaçoes-view', true);
     private MensagemViwer = new MensagemView('#mensagemView');
     private readonly diasUteis: number[] = [1, 2, 3, 4, 5];
 
@@ -20,7 +20,12 @@ export class NegociaçaoController {
     }
 
     public Adiciona(): void{
-        const negociaçao = this.CriarNegociaçao();
+        const negociaçao = Negociaçao.CriarNegociaçao(
+            this.inputData.value, 
+            this.inputQuantidade.value, 
+            this.inputValor.value
+        )
+
         const diaDaSemana = negociaçao.data.getDay();
 
         if(this.diasUteis.includes(diaDaSemana)){
@@ -30,19 +35,13 @@ export class NegociaçaoController {
         } else {
             this.MensagemViwer.update('Só é possivel realizar Negociações em dias uteis.');
         }
-        setInterval(() => {this.MensagemViwer.AlertOff();},  8000);
+
+        setInterval(() => {this.MensagemViwer.AlertOff();}, 8000);
     }
 
     public LimparLista(): void{
         this.NegociaçaoViwer.reset();
-    }
-
-    private CriarNegociaçao(): Negociaçao{
-        const exp = /-/g
-        const date = new Date(this.inputData.value.replace(exp, ","));
-        const quantidade = parseInt(this.inputQuantidade.value);
-        const valor = parseFloat(this.inputValor.value);
-        return new Negociaçao (date, quantidade, valor)
+        this.negociaçoes.Reset();
     }
 
     private LimparFormulario(): void{

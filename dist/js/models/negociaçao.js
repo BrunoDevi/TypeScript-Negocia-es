@@ -16,4 +16,11 @@ export class Negociaçao {
     get valor() {
         return this._valor;
     }
+    static CriarNegociaçao(dataInput, qtnInput, valorInput) {
+        const exp = /-/g;
+        const date = new Date(dataInput.replace(exp, ","));
+        const quantidade = parseInt(qtnInput);
+        const valor = parseFloat(valorInput);
+        return new Negociaçao(date, quantidade, valor);
+    }
 }

@@ -14,4 +14,8 @@ export class Negociaçoes {
     public Lista(): ReadonlyArray<Negociaçao>{
         return this.negociaçoes
     }
+
+    public Reset(): void{
+        this.negociaçoes = [];
+    }
 }

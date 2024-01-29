@@ -11,4 +11,7 @@ export class Negociaçoes {
     Lista() {
         return this.negociaçoes;
     }
+    Reset() {
+        this.negociaçoes = [];
+    }
 }
