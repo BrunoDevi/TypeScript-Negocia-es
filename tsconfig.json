@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-        "outDir": "dist/js",
+        "outDir": "app/dist/js",
         "target":"ES6",
         "noEmitOnError": true,
         "moduleResolution": "node",
@@ -9,5 +9,5 @@
         "strictNullChecks": true
     },
 
-    "include": ["app/**/*"]
+    "include": ["app/src/**/*"]
 }
