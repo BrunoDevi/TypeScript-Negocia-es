@@ -1,3 +1,5 @@
+import { LogarTempoDeExecução } from "../models/logar-tempo-de-execução.js";
+
 export abstract class View <T>{
     protected element: HTMLElement;
     private escapar = false;

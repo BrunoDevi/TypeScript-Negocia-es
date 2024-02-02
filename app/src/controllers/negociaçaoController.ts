@@ -2,6 +2,7 @@ import { Negociaçoes } from "../models/negociaçoes.js";
 import { Negociaçao } from "../models/negociaçao.js";
 import { NegociaçoesView } from "../views/negociaçoes-view.js";
 import { MensagemView } from "../views/mensagen-view.js";
+import { LogarTempoDeExecução } from "../models/logar-tempo-de-execução.js";
 
 export class NegociaçaoController {
     private inputData: HTMLInputElement;
@@ -20,7 +21,7 @@ export class NegociaçaoController {
     }
 
     public Adiciona(): void{
-        const negociaçao = Negociaçao.CriarNegociaçao(
+        const negociaçao = Negociaçao.Criar(
             this.inputData.value, 
             this.inputQuantidade.value, 
             this.inputValor.value

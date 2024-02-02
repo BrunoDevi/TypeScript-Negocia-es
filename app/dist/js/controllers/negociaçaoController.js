@@ -14,7 +14,7 @@ export class NegociaçaoController {
         this.NegociaçaoViwer.update(this.negociaçoes);
     }
     Adiciona() {
-        const negociaçao = Negociaçao.CriarNegociaçao(this.inputData.value, this.inputQuantidade.value, this.inputValor.value);
+        const negociaçao = Negociaçao.Criar(this.inputData.value, this.inputQuantidade.value, this.inputValor.value);
         const diaDaSemana = negociaçao.data.getDay();
         if (this.diasUteis.includes(diaDaSemana)) {
             this.negociaçoes.Adicionar(negociaçao);

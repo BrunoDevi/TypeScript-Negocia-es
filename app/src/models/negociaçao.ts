@@ -19,7 +19,7 @@ export class Negociaçao{
         return this._valor
     }
 
-    public static CriarNegociaçao(dataInput: string, qtnInput: string, valorInput: string): Negociaçao{
+    public static Criar(dataInput: string, qtnInput: string, valorInput: string): Negociaçao{
         const exp = /-/g
         const date = new Date(dataInput.replace(exp, ","));
         const quantidade = parseInt(qtnInput);
