@@ -4,23 +4,28 @@ import { NegociaçoesView } from "../views/negociaçoes-view.js";
 import { MensagemView } from "../views/mensagen-view.js";
 import { LogarTempoDeExecução } from "../decorators/logar-tempo-de-execução.js";
 import { Inspect } from "../decorators/inspect.js";
+import { domInject } from "../decorators/domInject.js";
 
 export class NegociaçaoController {
+
+    @domInject('#data')
     private inputData: HTMLInputElement;
+    @domInject('#quantidade')
     private inputQuantidade: HTMLInputElement;
+    @domInject('#valor')
     private inputValor: HTMLInputElement;
+
     private negociaçoes = new Negociaçoes();
     private NegociaçaoViwer = new NegociaçoesView('#negociaçoes-view');
     private MensagemViwer = new MensagemView('#mensagemView');
     private readonly diasUteis: number[] = [1, 2, 3, 4, 5];
 
     constructor() {
-        this.inputData = document.querySelector('#data') as HTMLInputElement;
-        this.inputQuantidade = document.querySelector('#quantidade') as HTMLInputElement;
-        this.inputValor = document.querySelector('#valor') as HTMLInputElement;
         this.NegociaçaoViwer.update(this.negociaçoes);
     }
 
+    @Inspect()
+    @LogarTempoDeExecução()
     public Adiciona(): void{
         const negociaçao = Negociaçao.Criar(
             this.inputData.value, 

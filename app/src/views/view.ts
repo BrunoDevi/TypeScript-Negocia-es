@@ -13,7 +13,6 @@ export abstract class View <T>{
         }
     }
 
-    @Inspect()
     public update(model:T):void{
         let template = this.template(model);
         this.element.innerHTML = template;
