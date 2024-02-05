@@ -20,6 +20,7 @@ export class NegociaçaoController {
         this.NegociaçaoViwer.update(this.negociaçoes);
     }
 
+    @LogarTempoDeExecução(true)
     public Adiciona(): void{
         const negociaçao = Negociaçao.Criar(
             this.inputData.value, 
