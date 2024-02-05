@@ -1,4 +1,5 @@
-import { LogarTempoDeExecução } from "../models/logar-tempo-de-execução.js";
+import { Inspect } from "../decorators/inspect.js";
+import { LogarTempoDeExecução } from "../decorators/logar-tempo-de-execução.js"; 
 
 export abstract class View <T>{
     protected element: HTMLElement;

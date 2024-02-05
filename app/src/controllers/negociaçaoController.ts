@@ -2,7 +2,8 @@ import { Negociaçoes } from "../models/negociaçoes.js";
 import { Negociaçao } from "../models/negociaçao.js";
 import { NegociaçoesView } from "../views/negociaçoes-view.js";
 import { MensagemView } from "../views/mensagen-view.js";
-import { LogarTempoDeExecução } from "../models/logar-tempo-de-execução.js";
+import { LogarTempoDeExecução } from "../decorators/logar-tempo-de-execução.js";
+import { Inspect } from "../decorators/inspect.js";
 
 export class NegociaçaoController {
     private inputData: HTMLInputElement;
@@ -20,7 +21,6 @@ export class NegociaçaoController {
         this.NegociaçaoViwer.update(this.negociaçoes);
     }
 
-    @LogarTempoDeExecução(true)
     public Adiciona(): void{
         const negociaçao = Negociaçao.Criar(
             this.inputData.value, 
