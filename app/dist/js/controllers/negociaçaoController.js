@@ -5,7 +5,7 @@ import { MensagemView } from "../views/mensagen-view.js";
 export class NegociaçaoController {
     constructor() {
         this.negociaçoes = new Negociaçoes();
-        this.NegociaçaoViwer = new NegociaçoesView('#negociaçoes-view', true);
+        this.NegociaçaoViwer = new NegociaçoesView('#negociaçoes-view');
         this.MensagemViwer = new MensagemView('#mensagemView');
         this.diasUteis = [1, 2, 3, 4, 5];
         this.inputData = document.querySelector('#data');

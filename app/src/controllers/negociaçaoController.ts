@@ -10,7 +10,7 @@ export class NegociaçaoController {
     private inputQuantidade: HTMLInputElement;
     private inputValor: HTMLInputElement;
     private negociaçoes = new Negociaçoes();
-    private NegociaçaoViwer = new NegociaçoesView('#negociaçoes-view', true);
+    private NegociaçaoViwer = new NegociaçoesView('#negociaçoes-view');
     private MensagemViwer = new MensagemView('#mensagemView');
     private readonly diasUteis: number[] = [1, 2, 3, 4, 5];
 
