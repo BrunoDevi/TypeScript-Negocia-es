@@ -51,6 +51,27 @@ export class NegociaçaoController {
         this.negociaçoes.Reset();
     }
 
+    public importData(): void {
+        fetch('http://localhost:8080/dados')
+            .then(res => res.json())
+            .then((dados: any[]) => {
+                return dados.map(dadosDeHoje => {
+                    return new Negociaçao(
+                        new Date(),
+                        dadosDeHoje.montante,
+                        dadosDeHoje.vezes
+                    )
+                })
+            })
+            .then(negociaçaoDeHoje => {
+                for(let negociaçao of negociaçaoDeHoje){
+                    this.negociaçoes.Adicionar(negociaçao);
+                }
+                this.NegociaçaoViwer.update(this.negociaçoes);
+            })
+
+    }
+
     private LimparFormulario(): void{
         this.inputData.value = '';
         this.inputQuantidade.value = '';

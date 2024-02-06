@@ -10,7 +10,16 @@ if (form) {
 else {
     throw Error('Não é possivel realizar o  Registro. Formulario não existente!');
 }
-const reset = document.getElementById('reset-btn');
-reset.addEventListener("click", () => {
+const resetBtn = document.querySelector('#reset-btn');
+resetBtn.addEventListener("click", () => {
     control.LimparLista();
 });
+const importBtn = document.querySelector('#import-btn');
+if (importBtn) {
+    importBtn.addEventListener('click', () => {
+        control.importData();
+    });
+}
+else {
+    throw Error('Botão não encontrado');
+}
