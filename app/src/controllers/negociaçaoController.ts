@@ -5,6 +5,7 @@ import { MensagemView } from "../views/mensagen-view.js";
 import { LogarTempoDeExecução } from "../decorators/logar-tempo-de-execução.js";
 import { Inspect } from "../decorators/inspect.js";
 import { domInject } from "../decorators/domInject.js";
+import { NegociaçoesDoDia } from "../interface/negociações-do-dia.js";
 
 export class NegociaçaoController {
 
@@ -54,7 +55,7 @@ export class NegociaçaoController {
     public importData(): void {
         fetch('http://localhost:8080/dados')
             .then(res => res.json())
-            .then((dados: any[]) => {
+            .then((dados: NegociaçoesDoDia[]) => {
                 return dados.map(dadosDeHoje => {
                     return new Negociaçao(
                         new Date(),
