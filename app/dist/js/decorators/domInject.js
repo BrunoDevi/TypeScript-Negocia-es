@@ -1,7 +1,10 @@
 export function domInject(seletor) {
     return function (target, key) {
+        let element;
         const getter = function () {
-            const element = document.querySelector(seletor);
+            if (!element) {
+                element = document.querySelector(seletor);
+            }
             return element;
         };
         Object.defineProperty(target, key, { get: getter });
